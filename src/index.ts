@@ -18,20 +18,32 @@ const apiMethods: APIMethods<"/accounts"> = "post";
 /**
  * Success response (JSON) for a request
  */
-export type APISuccessResponse<Endpoint extends APIEndpoints, Method extends APIMethods<Endpoint>> = SuccessResponseJSON<paths[Endpoint][Method]>;
-const successResponse: APISuccessResponse<"/accounts", "post"> = {
+export type APIResponseSuccess<Endpoint extends APIEndpoints, Method extends APIMethods<Endpoint>> = SuccessResponseJSON<paths[Endpoint][Method]>;
+const successResponse: APIResponseSuccess<"/accounts", "post"> = {
   id: "",
   name: "",
   role: "ADMIN"
 };
 
 /**
- * Body request (JSON) of a request
+ * Request body (JSON) for a request
  */
-export type APIBodyRequest<Endpoint extends APIEndpoints, Method extends APIMethods<Endpoint>> = RequestBodyJSON<paths[Endpoint][Method]>;
-const bodyRequest: APIBodyRequest<"/accounts", "post"> = {
+export type APIRequestBody<Endpoint extends APIEndpoints, Method extends APIMethods<Endpoint>> = RequestBodyJSON<paths[Endpoint][Method]>;
+const bodyRequest: APIRequestBody<"/accounts", "post"> = {
   name: "",
   password: ""
+};
+
+/**
+ * Request query (JSON) for a request
+ */
+export type APIRequestQuery<Endpoint extends APIEndpoints, Method extends APIMethods<Endpoint>> = (
+  paths[Endpoint][Method] extends { parameters: { query?: infer Query } } ? Query : never
+);
+const queryRequest: APIRequestQuery<"/products/standard", "get"> = {
+  includeDeleted: false,
+  onlyIDs: [],
+  search: ""
 };
 
 // https://github.com/drwpow/openapi-typescript/blob/main/packages/openapi-typescript-helpers/index.d.ts
