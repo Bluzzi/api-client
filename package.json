@@ -1,0 +1,28 @@
+{
+  "name": "openapi-fetch",
+  "version": "0.0.1",
+  "author": "Bluzzi",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --minify --format cjs,esm --clean --dts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "ts:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "openapi-typescript-helpers": "^0.0.7"
+  },
+  "devDependencies": {
+    "@bluzzi/eslint-config": "^1.2.1",
+    "@types/node": "^20.11.17",
+    "eslint": "^8.56.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "eslintConfig": {
+    "extends": "@bluzzi"
+  }
+}
